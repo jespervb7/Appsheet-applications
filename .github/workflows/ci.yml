@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      - name: Install tooling
+        run: pip install ruff black pytest
+
+      - name: Lint (ruff)
+        run: ruff check .
+
+      - name: Format check (black)
+        run: black --check .
+
+      - name: Test (pytest)
+        # Exit code 5 means "no tests collected" — fine while tests/ is
+        # still empty. Remove this fallback once real tests exist.
+        run: pytest || [ $? -eq 5 ]

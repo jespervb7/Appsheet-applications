@@ -1,0 +1,20 @@
+name: Feature / improvement
+description: A new AppSheet app feature, automation, or documentation to add.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's the motivation?
+      description: What's missing, or what would this improve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed approach
+      description: How should this be implemented (app config, script, workflow)?
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes

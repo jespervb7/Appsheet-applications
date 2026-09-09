@@ -1,0 +1,24 @@
+# Stop searching parent directories for another .editorconfig.
+root = true
+
+# Defaults for every file.
+[*]
+charset = utf-8                # save files as UTF-8
+end_of_line = lf                # use \n line endings
+insert_final_newline = true     # file must end with a newline
+trim_trailing_whitespace = true # strip trailing spaces/tabs on save
+indent_style = space            # use spaces, not tabs
+indent_size = 2                 # width of one indent level
+
+# Python's community convention (PEP 8) is 4 spaces.
+[*.py]
+indent_size = 4
+
+# Trailing whitespace can be intentional in Markdown (two trailing
+# spaces force a line break), so don't strip it.
+[*.md]
+trim_trailing_whitespace = false
+
+# Windows batch/PowerShell scripts expect CRLF line endings.
+[*.{bat,cmd,ps1}]
+end_of_line = crlf

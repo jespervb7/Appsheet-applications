@@ -1,0 +1,37 @@
+# Secrets & credentials — never commit these
+*.env
+.env.*
+credentials.json
+service_account*.json
+*service-account*.json
+token.json
+token.pickle
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editors / OS — keep shared VS Code recommendations, ignore personal settings
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

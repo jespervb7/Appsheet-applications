@@ -1,0 +1,16 @@
+# Let git normalize line endings for text files, checked in as LF,
+# regardless of what OS/editor a contributor commits from.
+* text=auto eol=lf
+
+# Windows-only scripts need CRLF to run correctly on Windows.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Don't touch binary files.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
