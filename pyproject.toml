@@ -1,9 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "appsheet-applications"
 version = "0.1.0"
 description = "Documentation and automation for AppSheet applications"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "gspread>=6.1,<7",
+    "google-auth>=2.32,<3",
+    "pandas>=2.0,<3",
+    "openpyxl>=3.1.5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "python-dotenv>=1.0,<2",
+    "ruff>=0.6,<1",
+    "black>=24,<25",
+    "pytest>=8,<9",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
 
 [tool.ruff]
 line-length = 100
@@ -12,3 +32,11 @@ target-version = "py311"
 [tool.black]
 line-length = 100
 target-version = ["py311"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[dependency-groups]
+dev = [
+    "openpyxl>=3.1.5",
+]

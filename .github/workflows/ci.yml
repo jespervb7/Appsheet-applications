@@ -11,20 +11,18 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v7
+      - uses: astral-sh/setup-uv@v10.1.0
         with:
-          python-version-file: ".python-version"
+          enable-cache: true
 
       - name: Install tooling
-        run: pip install ruff black pytest
+        run: uv sync --extra dev
 
       - name: Lint (ruff)
-        run: ruff check .
+        run: uv run ruff check .
 
       - name: Format check (black)
-        run: black --check .
+        run: uv run black --check .
 
       - name: Test (pytest)
-        # Exit code 5 means "no tests collected" — fine while tests/ is
-        # still empty. Remove this fallback once real tests exist.
-        run: pytest || [ $? -eq 5 ]
+        run: uv run pytest

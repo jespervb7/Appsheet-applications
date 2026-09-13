@@ -30,8 +30,10 @@ htmlcov/
 .vscode/*
 !.vscode/extensions.json
 .idea/
+data/
 .DS_Store
 Thumbs.db
 
 # Logs
 *.log
+*.xlsx

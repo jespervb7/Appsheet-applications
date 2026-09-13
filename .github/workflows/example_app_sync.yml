@@ -1,0 +1,27 @@
+name: Example App Sync
+
+on:
+  workflow_dispatch: {}
+  # Uncomment once this template is forked into a real app with
+  # GOOGLE_SERVICE_ACCOUNT_JSON and EXAMPLE_APP_SPREADSHEET_ID configured:
+  # schedule:
+  #   - cron: "0 6 * * *"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: astral-sh/setup-uv@v10.1.0
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Run sync
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          EXAMPLE_APP_SPREADSHEET_ID: ${{ vars.EXAMPLE_APP_SPREADSHEET_ID }}
+        run: uv run python -m src.example_app.sync_missing_rows

@@ -16,30 +16,39 @@ notes below capture how work in this repo should be done.
 
 ## Getting started (Python environment)
 
-Requires Python 3.11+.
-
-**Windows (PowerShell):**
-
-```powershell
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -e .
-```
-
-**macOS/Linux:**
+Requires Python 3.11+. This repo uses [uv](https://docs.astral.sh/uv/) for
+environment/dependency management (see `uv.lock`) — install it once per
+machine per uv's own install docs, then, from the repo root:
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -e .
+uv sync --extra dev
 ```
 
-Deactivate with `deactivate` in either shell.
+This creates `.venv` if it doesn't exist yet and installs the project
+editable, including the `dev` extra (`python-dotenv`, which lets local
+scripts auto-load a gitignored `.env` file instead of requiring env vars
+to be exported manually). Omit `--extra dev` for a bare install.
+
+Run commands either by activating the venv as usual
+(`.venv\Scripts\Activate.ps1` on Windows, `source .venv/bin/activate` on
+macOS/Linux; `deactivate` to leave it), or by prefixing them with `uv run`
+(e.g. `uv run pytest`) without activating at all.
+
+<details>
+<summary>Without uv (plain pip)</summary>
+
+```bash
+python -m venv .venv
+# .venv\Scripts\Activate.ps1  (Windows)  /  source .venv/bin/activate  (macOS/Linux)
+pip install -e ".[dev]"
+```
+
+</details>
 
 Then install the git hooks once per clone:
 
 ```bash
-pip install pre-commit
+uv tool install pre-commit
 pre-commit install
 ```
 
